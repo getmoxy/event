@@ -15,6 +15,12 @@ class Dispatcher {
     protected $_name;
     protected $_listeners = array();
 
+    /**
+     * Construct Event Dispatcher
+     *
+     * @author Tom Morton
+     * @param string $name Event Name
+     */
     public function __construct($name) {
         $this->_name = $name;
     }
@@ -29,6 +35,11 @@ class Dispatcher {
     }
 
     public function addListener($callback) {
+
+        if(!is_callable($callback)) {
+            throw new \Exception('Moxy\Event Dispatcher requires callable as listener');
+        }
+        
         $this->_listeners[] = $callback;
     }
 }
