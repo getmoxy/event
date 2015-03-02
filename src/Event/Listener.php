@@ -16,6 +16,10 @@ class Listener implements ListenerInterface {
     protected $_callback;
 
     public function __construct($callback) {
+
+        if(!is_callable($callback)) {
+            throw new \Exception('Moxy\Event\Listener expects valid callback');
+        }
         $this->_callback = $callback;
     }
 

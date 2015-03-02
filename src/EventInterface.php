@@ -1,5 +1,5 @@
 <?php
-namespace Moxy\Event;
+namespace Moxy;
 
 interface EventInterface {
 
