@@ -14,7 +14,6 @@ Installation
 
     $ composer require moxy/event:dev-master
 
-
 Yet Another Event Library
 =====
 
