@@ -12,14 +12,27 @@ class EventTest extends PHPUnit_Framework_TestCase
             array('noncallable'),
             array(1),
             array(array()),
-            array($this),
             array(false)
         );
     }
 
     public function testConstruct()
     {
-        return new \Moxy\Event('test.event',array('test' => 'data'));
+        $event = new \Moxy\Event('test.event',array('test' => 'data'));
+
+        $inspect = new ReflectionClass($event);
+
+        $nameProperty = $inspect->getProperty('_name');
+        $nameProperty->setAccessible(true);
+        $this->assertEquals('test.event',$nameProperty->getValue($event));
+
+        $dataProperty = $inspect->getProperty('_data');
+        $dataProperty->setAccessible(true);
+        $data = $dataProperty->getValue($event);
+        $this->assertInternalType('array', $data);
+        $this->assertEquals(array('test' => 'data'), $data);
+
+        return $event;
     }
 
     /**
@@ -29,6 +42,17 @@ class EventTest extends PHPUnit_Framework_TestCase
     {
         $this->assertEquals('data', $event->test);
         $this->assertEquals('test.event', $event->name);
+    }
+
+    /**
+     * @depends testConstruct
+     * @dataProvider errorDataProvider
+     * @expectedException Exception
+     * @expectedExceptionMessage Invalid event property
+     */
+    public function testGetterInvalid($name, $event)
+    {
+        $event->$name;
     }
 
 }

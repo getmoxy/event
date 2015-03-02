@@ -39,11 +39,11 @@ class Event implements EventInterface {
         if($name === 'name') {
             return $this->_name;
         }
-        
+
         if(isset($this->_data[$name])) {
             return $this->_data[$name];
         }
 
-        parent::__get($name);
+        throw new \Exception('Invalid event property: ' . $name);
     }
 }

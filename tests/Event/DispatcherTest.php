@@ -25,7 +25,15 @@ class DispatcherTest extends PHPUnit_Framework_TestCase
 
     public function testConstruct()
     {
-        return new \Moxy\Event\Dispatcher('test.event');
+        $dispatcher = new \Moxy\Event\Dispatcher('test.event');
+
+        $inspect = new ReflectionClass($dispatcher);
+
+        $nameProperty = $inspect->getProperty('_name');
+        $nameProperty->setAccessible(true);
+        $this->assertEquals('test.event',$nameProperty->getValue($dispatcher));
+
+        return $dispatcher;
     }
 
     /**
@@ -34,6 +42,15 @@ class DispatcherTest extends PHPUnit_Framework_TestCase
     public function testAddListener($dispatcher)
     {
         $dispatcher->addListener(new \Moxy\Event\Listener(array($this,'_callback')));
+
+        $inspect = new ReflectionClass($dispatcher);
+
+        $listenersProp = $inspect->getProperty('_listeners');
+        $listenersProp->setAccessible(true);
+        $listeners = $listenersProp->getValue($dispatcher);
+        $this->assertInternalType('array',$listeners);
+        $this->assertCount(1,$listeners);
+        $this->assertInstanceOf('\Moxy\Event\Listener',$listeners[0]);
 
         return $dispatcher;
     }
