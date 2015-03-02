@@ -39,8 +39,6 @@ class EmitterTest extends PHPUnit_Framework_TestCase
         $this->assertInternalType('array',$events);
         $this->assertCount(1,$events);
         $this->assertInstanceOf('\Moxy\Event\Dispatcher',$events['test.event']);
-
-        return $dispatcher;
     }
 
 
