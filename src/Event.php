@@ -28,14 +28,17 @@ class Event implements EventInterface {
     }
 
     /**
-     * Getter to allow access to Event data
+     * Get Event Property
+     *
+     * Magic methhod to allow access to Event data
      *
      * @author Tom Morton
      * @param string $name Variable name
-     *
+     * @throws \Exception when passed a non-existent property name
      */
     public function __get($name)
     {
+
         if($name === 'name') {
             return $this->_name;
         }
@@ -45,5 +48,6 @@ class Event implements EventInterface {
         }
 
         throw new \Exception('Invalid event property: ' . $name);
+
     }
 }

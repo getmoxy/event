@@ -11,7 +11,6 @@ class EventTest extends PHPUnit_Framework_TestCase
             array(null),
             array('noncallable'),
             array(1),
-            array(array()),
             array(false)
         );
     }
