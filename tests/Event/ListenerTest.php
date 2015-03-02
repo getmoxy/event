@@ -1,4 +1,7 @@
 <?php
+/**
+* @coversDefaultClass \Moxy\Event\Listener
+*/
 class ListenerTest extends PHPUnit_Framework_TestCase
 {
 
@@ -30,7 +33,7 @@ class ListenerTest extends PHPUnit_Framework_TestCase
      */
     public function testCall($listener)
     {
-        $listener->call(new \Moxy\Event(array()));
+        $listener->call(new \Moxy\Event('test.event',array()));
     }
 
     /**

@@ -21,7 +21,7 @@ class Dispatcher {
 
     public function dispatch($data) {
 
-        $event = new \Moxy\Event($data);
+        $event = new \Moxy\Event($this->_name, $data);
 
         foreach($this->_listeners as $listener) {
             $listener->call($event);
