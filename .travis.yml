@@ -1,6 +1,6 @@
 addons:
   code_climate:
-    repo_token: ""
+    repo_token: "2ea05da531f0542cca13dfb45ec34b7d43d685ad074a88c7e66abac064d530fc"
 
 language: php
 
