@@ -1,7 +1,7 @@
 <?php
-namespace Moxy\Interface;
+namespace Moxy\Event;
 
-interface Event {
+interface EventInterface {
 
     public function __construct($data);
 }

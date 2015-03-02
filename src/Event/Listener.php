@@ -1,7 +1,7 @@
 <?php
 namespace Moxy\Event;
 
-use \Moxy\Intefaces\Event\Listener as ListenerInterface;
+use Moxy\Event\ListenerInterface;
 /**
  * Event Listener
  *
@@ -11,7 +11,7 @@ use \Moxy\Intefaces\Event\Listener as ListenerInterface;
  * @copyright  2015 Tom Morton
  * @license    MIT
  */
-class Listener {
+class Listener implements ListenerInterface {
 
     protected $_callback;
 
@@ -19,7 +19,7 @@ class Listener {
         $this->_callback = $callback;
     }
 
-    public function call(\Moxy\Event $event) {
+    public function call(\Moxy\EventInterface $event) {
         call_user_func($this->_callback,$event);
     }
 
