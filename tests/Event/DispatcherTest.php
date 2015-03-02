@@ -19,7 +19,8 @@ class DispatcherTest extends PHPUnit_Framework_TestCase
 
     public function _callback($event) 
     {
-
+        $this->assertEquals('test.event', $event->name);
+        $this->assertEquals('data', $event->test);
     }
 
     public function testConstruct()
@@ -32,18 +33,18 @@ class DispatcherTest extends PHPUnit_Framework_TestCase
      */
     public function testAddListener($dispatcher)
     {
-        $dispatcher->addListener(array($this,'_callback'));
+        $dispatcher->addListener(new \Moxy\Event\Listener(array($this,'_callback')));
+
+        return $dispatcher;
     }
 
+
     /**
-     * @depends testConstruct
-     * @expectedException Exception
-     * @expectedExceptionMessage Moxy\Event Dispatcher requires callable as listener
-     * @dataProvider errorDataProvider
+     * @depends testAddListener
      */
-    public function testAddListenerFailure($callable, $dispatcher)
+    public function testDispatch($dispatcher)
     {
-        $dispatcher->addListener($callable);
+        $dispatcher->dispatch(array('test' => 'data'));
     }
 
 

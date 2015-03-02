@@ -35,11 +35,6 @@ class Dispatcher {
     }
 
     public function addListener($callback) {
-
-        if(!is_callable($callback)) {
-            throw new \Exception('Moxy\Event Dispatcher requires callable as listener');
-        }
-        
         $this->_listeners[] = $callback;
     }
 }
