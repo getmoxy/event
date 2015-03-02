@@ -2,20 +2,14 @@
 class ListenerTest extends PHPUnit_Framework_TestCase
 {
 
-    // test callback
     public function _callback($event)
     {
-        //$this->assert
+        $this->assertInstanceOf($event, '\Moxy\Event');    
     }
 
-
-    public function testListenerCallback()
+    public function testConstruct()
     {
         $listener = new \Moxy\Event\Listener(array($this, '_callback'));
-
-
     }
-
-
 
 }

@@ -10,7 +10,7 @@
 
     <testsuites>
         <testsuite name="moxy-event-tests">
-            <directory>tests/</directory>
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
 
